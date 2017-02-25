@@ -45,6 +45,36 @@ public class MergeSort {
         }
     }
 
+    public static void merger1(int a[],int p,int q,int r,int[] tmp){
+        int k = 0;
+        int i = p,j = q + 1;
+        while (i <= q&&j <= r){
+            if (a[i] <= a[j]){
+                tmp[k++] = a[i++];
+            }else{
+                tmp[k++] = a[j++];
+            }
+        }
+        while (i <= q){
+            tmp[k++] = a[i++];
+        }
+        while (j <= r){
+            tmp[k++] = a[j++];
+        }
+        for (int l = 0; l <r - p + 1;l++){
+            a[p + l] = tmp[l];
+        }
+    }
+
+    public static void mergeSort2(int[]a,int first,int last,int[] tmp){
+        if (first < last){
+            int mid = (first + last) / 2;
+            mergeSort2(a,first,mid,tmp);
+            mergeSort2(a,mid + 1,last,tmp);
+            merger1(a,first,mid,last,tmp);
+        }
+    }
+
     public static void main(String[] args) {
         int[] a = new int[]{5, 2, 4, 7, 1, 3, 2, 6};
         mergeSort(a, 0, a.length - 1);

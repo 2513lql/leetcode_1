@@ -31,6 +31,27 @@ public class QuickSort {
         return i + 1;
     }
 
+    public static int partition2(int[] A,int low,int high){
+
+        int proit = A[low];
+        while (low < high){
+            while (low < high && proit <= A[high]) high--;
+            A[low] = A[high];
+            while (low < high && proit >= A[low]) low++;
+            A[high] = A[low];
+        }
+        A[low] = proit;
+        return low;
+    }
+
+    public static void quickSort2(int[] A,int p,int r){
+        if (p < r){
+            int proit = partition2(A,p,r);
+            quickSort2(A , p , proit - 1);
+            quickSort2(A , proit + 1,r);
+        }
+    }
+
     public static void quickSort(int[] A,int p ,int r){
 
         if (p < r){
@@ -45,6 +66,9 @@ public class QuickSort {
         A[i] = A[j];
         A[j] = tmp;
     }
+
+
+
 
 
 
